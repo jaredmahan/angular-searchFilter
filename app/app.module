@@ -1,0 +1,19 @@
+$(function () {
+    "use strict";
+
+    var app = angular.module('app', [
+        // App Modules
+        'ngSanitize',
+        'ngRoute',
+        'ngResource',
+        'ngMessages',
+        'smart-table',
+        'ui.select',
+
+        // Feature Areas
+        'app.services',
+        'app.widgets'
+    ]);
+
+    
+}());
