@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+
+    head
+        != renderStyles('bootstrap')
+        != renderStyles('site')
+    body
+        div(class="container-fluid body-content", ng-app="app")
+            include ./includes/header
+            input(type="hidden", id="rootPath", value!="__dirname")
+            input(type="hidden", id="isDebug", value="true")
+            div(ng-view)
+            include ./includes/footer
+        != renderJs('jquery')
+        != renderJs('bootstrap')
+        != renderJs('angular')
+        != renderJs('angularThirdParty')
+        != renderJs('core')
+        != renderJs('app')
+        != renderJs('home')
+        != renderJs('default')
