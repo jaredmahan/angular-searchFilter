@@ -26,7 +26,7 @@ app.use(express.static(publicPath));
 
 /* GET home page. */
 app.get('/', function(req, res) {
-    res.render('index', { title: 'Home' });
+    res.render('index', { root: publicPath });
 });
 
 app.listen(port, function(){

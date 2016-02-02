@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    angular.module('app', [
+    var app = angular.module('app', [
         // App Modules
         'app.core',
         'ngSanitize',
@@ -11,7 +11,7 @@
         // Feature Areas
         'app.home',
         'app.services',
-        //'app.widgets'
+        'app.widgets'
         
     ]);   
 }());

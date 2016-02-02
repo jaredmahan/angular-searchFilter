@@ -7,7 +7,7 @@ html(lang="en")
     body
         div(class="container-fluid body-content", ng-app="app")
             include ./includes/header
-            input(type="hidden", id="rootPath", value!="__dirname")
+            input(type="hidden", id="rootPath", value="#{root}")
             input(type="hidden", id="isDebug", value="true")
             div(ng-view)
             include ./includes/footer
@@ -19,4 +19,5 @@ html(lang="en")
         != renderJs('app')
         != renderJs('home')
         != renderJs('services')
+        != renderJs('widgets')
         != renderJs('defaultJs')
