@@ -1,7 +1,7 @@
-$(function () {
+(function () {
     "use strict";
 
-    var app = angular.module('app', [
+    angular.module('app', [
         // App Modules
         'app.core',
         'ngSanitize',
@@ -9,11 +9,9 @@ $(function () {
         'ngResource',
         
         // Feature Areas
-        'app.home'
-        //'app.services',
+        'app.home',
+        'app.services',
         //'app.widgets'
         
-    ]);
-
-    
+    ]);   
 }());

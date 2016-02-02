@@ -2,8 +2,8 @@ doctype html
 html(lang="en")
 
     head
-        != renderStyles('bootstrap')
-        != renderStyles('site')
+        != renderStyles('defaultCss')
+        
     body
         div(class="container-fluid body-content", ng-app="app")
             include ./includes/header
@@ -18,4 +18,5 @@ html(lang="en")
         != renderJs('core')
         != renderJs('app')
         != renderJs('home')
-        != renderJs('default')
+        != renderJs('services')
+        != renderJs('defaultJs')

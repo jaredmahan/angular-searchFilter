@@ -13,3 +13,12 @@ footer {
   right: 0;
   text-align: right;
 }
+.inline {
+  display: inline-block;
+}
+.table {
+  margin-bottom: 0;
+}
+.table-select tbody {
+  cursor: pointer !important;
+}

@@ -1,5 +1,6 @@
+/*global process, __dirname */
+
 var express = require('express');
-var process = require('process');
 var path = require('path');
 var bundleUp = require('bundle-up3');
 
@@ -20,18 +21,14 @@ bundleUp(app, assets, {
   complete: console.log.bind(console, "Bundle-up: static files are minified/ready")
 });
 
-
 app.set('view engine', 'jade');
 app.use(express.static(publicPath));
 
 /* GET home page. */
 app.get('/', function(req, res) {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Home' });
 });
 
-
-
-var port = 10003;
 app.listen(port, function(){
 	console.log('server listening on port '  + port);
 })

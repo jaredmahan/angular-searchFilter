@@ -14,7 +14,7 @@ function registerScripts(assets){
     
     assets.addJsUrl('/js/bootstrap.js', 'bootstrap');
       
-    assets.addJsUrl('/js/site.js', 'default');
+    assets.addJsUrl('/js/site.js', 'defaultJs');
     
     assets.addJsUrl('/app/app.module.js', 'app');
     assets.addJsUrl('/app/app.route.js', 'app');
@@ -25,10 +25,14 @@ function registerScripts(assets){
     
     assets.addJsUrl('/app/home/home.module.js', 'home');
     assets.addJsUrl('/app/home/home.js', 'home');
+    
+    assets.addJsUrl('/app/services/services.module.js', 'services');
+    assets.addJsUrl('/app/services/employeeService.js', 'services');
 }
 
 function registerCss(assets){
-    assets.addCssUrl('/css/bootstrap.css', 'bootstrap');
-    assets.addCssUrl('/css/site.css', 'site');
+    assets.addCssUrl('/css/bootstrap.css', 'defaultCss');
+    assets.addCssUrl('/css/font-awesome.css', 'defaultCss');
+    assets.addCssUrl('/css/site.css', 'defaultCss');
 }
 
