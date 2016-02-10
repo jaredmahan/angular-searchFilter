@@ -39,6 +39,7 @@ function registerScripts(assets){
     assets.addJsUrl('/app/widgets/widgets.module.js', 'widgets');
     
     assets.addJsUrl('/app/widgets/filter/filter.module.js', 'widgets');
+    assets.addJsUrl('/app/widgets/filter/filterService.js', 'widgets');
     assets.addJsUrl('/app/widgets/filter/filter.js', 'widgets');
 }
 

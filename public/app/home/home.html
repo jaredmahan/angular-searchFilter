@@ -6,10 +6,13 @@
         <div class="panel-body">
             <p class="alert alert-info">{{vm.welcome}}</p>
             <div class="well well-sm form-inline" style="margin-bottom: 0; border-radius: 4px 4px 0 0;">
-                <angular-search-filter>
-                    <predefined-filter name="test" value="value" ></predefined-filter>    
+                <angular-search-filter enable-predefined-filtering="false"> <!-- datasource="vm.employees"> -->
+                    <predefined-filter name="All" value="value" ></predefined-filter>
+                    <predefined-filter name="Completed" value="value" ></predefined-filter>
+                    <predefined-filter name="Active" value="value" ></predefined-filter>
+                    <property-filter name="String Property"  property="propName" type="string"></property-filter>
+                    <property-filter name="Date Property" property="propDate" type="date"></property-filter>   
                 </angular-search-filter>
-                
             </div>
             <div class="well well-sm form-inline" style="margin-bottom: 0; border-radius: 4px 4px 0 0;">
                 <div class="text-left inline">
