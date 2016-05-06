@@ -20,7 +20,50 @@
             vm.welcome = "Welcome to our site. This site uses node.js and angular.js. "
               + "It uses express with jade as the template engine. "
               + "Finally, we top it off by using gulp for tasks such as building javascript, "
-              + "less, and css and bundle everything together using bundle-up3."
+              + "less, and css and bundle everything together using bundle-up3.";
+            
+        };
+        vm.filterTable = function(filters){
+            vm.pagingLoading = true;
+
+            if (filters !== undefined) {
+                if (filters.odataQuery !== undefined) {
+                    vm.filterString = filters.odataQuery;
+                    //tableState.pagination.start = 0;
+                }
+            }
+
+            var searchOptions = { $count: true };
+            //searchOptions.$top = tableState.pagination.number || 15;
+            //searchOptions.$skip = tableState.pagination.start || 0;
+            //if (tableState.sort.predicate !== undefined) {
+            //    searchOptions.$orderby = tableState.sort.predicate + (tableState.sort.reverse ? " desc" : " asc");
+            //}
+            
+            searchOptions.$filter = vm.filterString;    
+
+            var promises = [];
+            promises.push(employeeService.resource.query(searchOptions).$promise);
+            $q.all(promises).then(function (response) {
+                //vm.translations = response[0].value;
+                vm.employees = response[0].value;
+                
+                //tableState.pagination.totalItemCount = response[0]["@odata.count"]
+                //tableState.pagination.numberOfPages = Math.ceil(response[0]["@odata.count"] / parseInt(tableState.pagination.number));
+                //vm.pagination = tableState.pagination;
+                
+                // add end index
+                //vm.tableState = tableState;
+                //vm.tableState.pagination.end = vm.tableState.pagination.start + vm.tableState.pagination.number;
+                //if (vm.tableState.pagination.number > vm.tableState.pagination.totalItemCount
+                //    || (vm.tableState.pagination.start + vm.tableState.pagination.number + 1) > vm.tableState.pagination.totalItemCount) {
+                //    vm.tableState.pagination.end = vm.tableState.pagination.totalItemCount;
+                // }
+
+                
+                vm.isLoading = false;
+                vm.pagingLoading = false;
+            });
         };
         vm.init();
     };

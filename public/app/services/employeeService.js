@@ -7,7 +7,9 @@
 
     function employeeService(common, $resource) {
         return {
-            resource: $resource('http://services.odata.org/V4/Northwind/Northwind.svc/Employees(:id)')
+            resource: $resource('http://services.odata.org/V4/Northwind/Northwind.svc/Employees(:id)', null, {
+              'query': { method: 'GET', isArray: false },  
+            })
         }
     }
 } ());

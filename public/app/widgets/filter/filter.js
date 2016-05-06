@@ -7,13 +7,25 @@
 
     var controller = function ($scope, $element, $attrs, $transclude, filterService) {
         var vm = this;
+        vm.enablePredefinedFiltering = (vm.enablePredefinedFiltering === 'true');
+        vm.enablePropertyFiltering = vm.enablePropertyFiltering === undefined ? true : (vm.enablePredefinedFiltering === 'true');
+
         vm.operators = {
-            date: ['before', 'after', 'equals'],
-            string: ['equals', 'contains', 'starts with', 'ends with']
+            date: ['before', 'after'],
+            datetime: ['before', 'after'],
+            string: ['equals', 'contains', 'starts with', 'ends with'],
+            int32: ['equals', 'greater than', 'greater than or equal', 'less than', 'less than or equal'],
+            number: ['equals', 'greater than', 'greater than or equal', 'less than', 'less than or equal'],
         };
         vm.init = function () {
-            vm.initUserInterface();
-            console.log('angularSearchFilter: Controller initialized.');
+            // if predefined filtering is not enabled only show property filtering
+            vm.enablePredefinedFiltering ? vm.showPredefinedFiltering() : vm.showPropertyFiltering();
+
+            // if the user tries to disable predefined and property filtering throw and error.
+            if (!vm.enablePredefinedFiltering && !vm.enablePropertyFiltering) {
+                throw "Angular Search Filter: You must enable either predefined or propery search."
+            }
+
             vm.predefinedOptions = [];
             vm.propertyOptions = [];
             vm.predefinedFilters = [];
@@ -21,44 +33,59 @@
             vm.filters = [];
             vm.selectedPredefined = null;
             vm.selectedProperty = null;
-            vm.selectedOperator = null;
+            vm.selectedOperator = null;        
+
+            // Watch the property and predefined filters for changes. If there is a change fire the on change en
+            $scope.$watch('[vm.propertyFilters,vm.predefinedFilters]', function (prop, pre) {
+                if (filterService.arraysEqual(prop[0], prop[1]) && filterService.arraysEqual(pre[0], pre[1])) return;
+                
+                // Generate an odata query from the property filters
+                // TODO: Append the predefined filters to the property filters
+                var filterString = null;
+                for (var i = 0; i < prop[0].length; i++) {
+                    if (filterString === null) filterString = "";
+                    if (i > 0) filterString += " and ";
+                    filterString += prop[0][i].odataPattern
+                }
+                // For working with smart table
+                //vm.onChange($scope.tableState, { odataQuery: filterString, property: prop[0], predefinedFilter: pre[0] });
+                vm.onChange({ odataQuery: filterString, property: prop[0], predefinedFilter: pre[0] });
+            }, true);
         };
-        vm.initUserInterface = function () {
-            if (vm.enablePredefinedFiltering !== "false") {
-                vm.enablePredefinedFiltering = true;
-                vm.showPredefinedFiltering();
-            } else vm.showPropertyFiltering();
-            if (vm.enablePropertyFiltering !== "false") vm.enablePropertyFiltering = true;
-            if (vm.enablePredefinedFiltering === "false" && vm.enablePropertyFiltering === "false") {
-                throw "Angular Search Filter: You must enable either predefined or propery search."
-            }
-        };
+        
         vm.getOperators = function () {
             if (vm.selectedProperty === null) return;
             var result = vm.operators[vm.selectedProperty.type];
             return result;
-        }
+        };
+
         vm.showPredefinedFiltering = function () {
             vm.propertyVisible = false;
             vm.predefinedVisible = true;
         };
+
         vm.showPropertyFiltering = function () {
             vm.predefinedVisible = false;
             vm.propertyVisible = true;
         };
+
         vm.addPredefinedFilter = function () {
+            // TODO: Add predefined filtering functionality
             var selected = angular.copy(vm.selectedPredefined);
             selected.uid = filterService.uid.new();
             vm.predefinedFilters.push(selected);
         };
+
         vm.addPropertyFilter = function () {
             var selected = angular.copy(vm.selectedProperty);
             var exists = false;
+
             // Validate the property filter doesn't already exist
             angular.forEach(vm.propertyFilters, function (item, idx) {
                 var sameProperty = selected.property === item.property;
                 var sameOperator = selected.operator === item.operator;
-                var sameValue = selected.value === item.value;
+                // Check the value and check for the same dates
+                var sameValue = selected.value === item.value || selected.value.format("MM/DD/YYYY") === item.value;
                 if (sameProperty && sameOperator && sameValue) {
                     alert('Selected filter already exists');
                     exists = true;
@@ -67,6 +94,7 @@
             });
             if (!exists) {
                 selected.uid = filterService.uid.new();
+                selected = filterService.generateODataPattern(selected);
                 vm.propertyFilters.push(selected);
             }
         };
@@ -83,12 +111,15 @@
         vm.clearAll = function () {
             vm.predefinedFilters = [];
             vm.propertyFilters = [];
+            vm.selectedProperty = null;
         };
         vm.init();
     };
 
     function angularSearchFilter() {
         return {
+            // Uncomment to work with smart table 
+            //require: '^stTable',
             restrict: 'E',
             transclude: true,
             templateUrl: 'app/widgets/filter/filter.html',
@@ -97,8 +128,13 @@
             bindToController: true,
             scope: {
                 datasource: '=',
-                enablePropertyFiltering: '@',
-                enablePredefinedFiltering: '@'
+                enablePropertyFiltering: '=?',
+                enablePredefinedFiltering: '=?',
+                onChange: '='
+            },
+            link: function ($scope, $element, $attrs, parentCtrl) {
+                // Uncomment to work with smart table
+                //$scope.tableState = parentCtrl.tableState();
             }
         }
     };
@@ -112,7 +148,6 @@
             },
             link: function ($scope, $element, $attrs, parentCtrl) {
                 parentCtrl.predefinedOptions.push({ name: $scope.name, value: $scope.value });
-                console.log('angularSearchFilter: predefined option intialized.');
             }
         }
     };
@@ -127,9 +162,23 @@
                 exclude: '@'
             },
             link: function ($scope, $element, $attrs, parentCtrl) {
-                parentCtrl.propertyOptions.push({ name: $scope.name, property: $scope.property, type: $scope.type, exclude: $scope.exclude });
-                console.log('angularSearchFilter: property option intialized.');
+                parentCtrl.propertyOptions.push({ name: $scope.name, property: $scope.property, type: $scope.type.toLowerCase(), exclude: $scope.exclude });
             }
         }
     };
-} ());
+}());
+
+
+// String manipulation added here
+// First, checks if it isn't implemented yet.
+if (!String.prototype.format) {
+    String.prototype.format = function () {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function (match, number) {
+            return typeof args[number] != 'undefined'
+              ? args[number]
+              : match
+            ;
+        });
+    };
+}

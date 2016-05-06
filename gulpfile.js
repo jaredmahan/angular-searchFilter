@@ -22,15 +22,19 @@ gulp.task('bower', function() {
 });
 
 // Build out all of our bower javascript files
-gulp.task('bower:js', function() {
+gulp.task('bower:js', ['moment.js'], function() {
 	var jsFiles = ['src/js/*'];
 	return gulp.src(plugins.mainBowerFiles().concat(jsFiles))
 		.pipe(plugins.filter('*.js'))
 		.pipe(gulp.dest(dest + 'js'));     
 });
 
+gulp.task('moment.js', function(){
+    return gulp.src('node_modules/moment/moment.js').pipe(gulp.dest('public/js'));
+    
+});
 // Compile all css files
-gulp.task('bower:css', ['bootstrap:compileLess', 'site:compileLess', 'font-awesome:compileLess'], function() {
+gulp.task('bower:css', ['bootstrap:compileLess', 'site:compileLess', 'searchFilter:compileLess', 'font-awesome:compileLess'], function() {
     var cssFiles = ['src/css/*'];
 	return gulp.src(plugins.mainBowerFiles().concat(cssFiles))
 		.pipe(plugins.filter('*.css'));
@@ -85,7 +89,12 @@ gulp.task('site:compileLess', function(){
     .pipe(gulp.dest('public/css'));
 });
 
-
+// Compile site less file to css file
+gulp.task('searchFilter:compileLess', function(){
+    return gulp.src('less/angularSearchFilter.less')
+    .pipe(less())
+    .pipe(gulp.dest('public/css'));
+});
 
 
 

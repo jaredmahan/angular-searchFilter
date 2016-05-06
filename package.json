@@ -6,7 +6,8 @@
   "dependencies": {
     "bundle-up3": "^1.1.1",
     "express": "^4.13.1",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "moment": "^2.13.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

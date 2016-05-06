@@ -13,6 +13,8 @@ function registerScripts(assets){
     assets.addJsUrl('/js/angular-sanitize.js', 'angularThirdParty');
     
     assets.addJsUrl('/js/bootstrap.js', 'bootstrap');
+    assets.addJsUrl('/js/moment.js', 'bootstrap');
+    assets.addJsUrl('/js/bootstrap-datetimepicker.js', 'bootstrap');
       
     assets.addJsUrl('/js/site.js', 'defaultJs');
     
@@ -37,6 +39,7 @@ function registerScripts(assets){
     
     // widgets
     assets.addJsUrl('/app/widgets/widgets.module.js', 'widgets');
+    assets.addJsUrl('/app/widgets/datetimepicker.js', 'widgets');
     
     assets.addJsUrl('/app/widgets/filter/filter.module.js', 'widgets');
     assets.addJsUrl('/app/widgets/filter/filterService.js', 'widgets');
@@ -45,7 +48,9 @@ function registerScripts(assets){
 
 function registerCss(assets){
     assets.addCssUrl('/css/bootstrap.css', 'defaultCss');
+    assets.addCssUrl('/css/bootstrap-datetimepicker.css', 'defaultCss');
     assets.addCssUrl('/css/font-awesome.css', 'defaultCss');
     assets.addCssUrl('/css/site.css', 'defaultCss');
+    assets.addCssUrl('/css/angularSearchFilter.css', 'defaultCss');
 }
 

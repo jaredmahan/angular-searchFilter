@@ -6,29 +6,31 @@
             <option value="">-- Choose a predefined filter --</option>
         </select>
         <span class="input-group-btn">
-        <button ng-disabled="vm.selectedPredefined === null" ng-click="vm.addPredefinedFilter()" class="btn btn-default" type="button">
-            <i class="fa fa-plus"></i>
-        </button>
-      </span>
+            <button ng-disabled="vm.selectedPredefined === null" ng-click="vm.addPredefinedFilter()" class="btn btn-default" type="button">
+                <i class="fa fa-plus"></i>
+            </button>
+        </span>
     </div>
     <div ng-show="vm.propertyVisible" class="input-group input-group-sm">
         <select class="form-control" style="width: 200px" ng-options="option.name for option in vm.propertyOptions" ng-model="vm.selectedProperty">
-            <option value="">-- Property --</option>
+            <option value="">-- Field --</option>
         </select>
-        <select class="form-control" style="width: 200px" ng-disabled="vm.selectedProperty.property === null" ng-options="option for option in vm.getOperators()" ng-model="vm.selectedProperty.operator">
+        <select class="form-control" style="width: 200px" ng-disabled="vm.selectedProperty === null" ng-options="option for option in vm.getOperators()" ng-model="vm.selectedProperty.operator">
             <option value="">-- Operator --</option>
         </select>
-        <input ng-show="vm.selectedProperty.type === 'string' || vm.selectedProperty.type === undefined" class="form-control" style="width: 200px" ng-disabled="vm.selectedProperty.operator === null" type="text" placeholder="Value" ng-model="vm.selectedProperty.value" />
-        <input ng-show="vm.selectedProperty.type === 'date'" class="form-control" style="width: 200px" ng-disabled="vm.selectedProperty.operator === null" type="text" placeholder="Date" ng-model="vm.selectedProperty.value" />
-        </span>
+        <input ng-if="vm.selectedProperty.type === 'string' || vm.selectedProperty.type === undefined" class="form-control" style="width: 200px" ng-disabled="vm.selectedProperty === null" type="text" placeholder="Value" ng-model="vm.selectedProperty.value" />
+        <input ng-if="vm.selectedProperty.type === 'int32' || vm.selectedProperty.type === 'number'" class="form-control" style="width: 200px" ng-disabled="vm.selectedProperty === null" type="number" placeholder="Value" ng-model="vm.selectedProperty.value" />
+        <date-time-picker ng-if="vm.selectedProperty.type === 'date' || vm.selectedProperty.type === 'datetime'" ng-disabled="vm.selectedProperty === null" style="width: 200px" ng-model="vm.selectedProperty.value" datetime-format="MM/DD/YYYY h:mm A"></date-time-picker>
         <span class="input-group-btn">
-        <button ng-click="vm.addPropertyFilter()" class="btn btn-default" type="button">
-            <i class="fa fa-plus"></i>
-        </button>
-      </span>
+            <button ng-click="vm.addPropertyFilter()" ng-disabled="vm.selectedProperty === null || vm.selectedProperty.operator === undefined || vm.selectedProperty.operator === null" class="btn btn-default" type="button">
+                <i class="fa fa-plus"></i>
+            </button>
+        </span>
     </div>
-    <button ng-show="vm.propertyVisible" class="btn btn-sm btn-default" ng-click="vm.showPredefinedFiltering()">Predefined</button>
-    <button ng-show="vm.predefinedVisible" class="btn btn-sm btn-default" ng-click="vm.showPropertyFiltering()">Property</button>
+    <span>
+        <button ng-show="vm.enablePredefinedFiltering" class="btn btn-sm btn-default" ng-click="vm.showPredefinedFiltering()">Predefined</button>
+        <button ng-show="vm.predefinedVisible" class="btn btn-sm btn-default" ng-click="vm.showPropertyFiltering()">Property</button>
+    </span>
     <button class="btn btn-sm btn-default" ng-click="vm.clearAll()">Clear All</button>
 </div>
 <div class="tag-container">
@@ -37,12 +39,12 @@
             <span>{{filter.name}}</span>
             <a ng-click="vm.removePredefinedFilter(filter)"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
         </span>
-     </span>
+    </span>
     <span ng-repeat="filter in vm.propertyFilters">
         <span class="tag label label-default">
             <span>{{filter.name}} {{filter.operator}} '{{filter.value}}'</span>
             <a ng-click="vm.removePropertyFilter(filter)"><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
-            </span>
         </span>
+    </span>
 </div>
-<pre>{{vm | json }}</pre>
+
