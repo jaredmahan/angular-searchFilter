@@ -1,3 +1,11 @@
+"use strict"
+
+var bundleUp = require('bundle-up3');
+var path = require('path');
+var bundleUp = require('bundle-up3');
+
+var app = express();
+
 const cluster = require('cluster'),
       stopSignals = [
         'SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',

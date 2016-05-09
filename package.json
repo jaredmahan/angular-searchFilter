@@ -1,12 +1,18 @@
 {
   "name": "openshift-cartridge-nodejs-template",
   "version": "1.0.1",
-  "description": "Custom Node.js cartridge for OpenShift - sample application",
+  "description": "Angular Search Filter ",
   "private": true,
   "main": "start.js",
+  "dependencies": {
+    "bundle-up3": "^1.1.1",
+    "express": "^4.13.1",
+    "express-handlebars": "^3.0.0",
+    "moment": "^2.13.0"
+  },
   "scripts": {
     "start": "node --use_strict start.js"
   },
-  "author": "Ionut-Cristian Florescu <ionut.florescu@gmail.com>",
+  "author": "Jared Mahan <jaredmahan@gmail.com>",
   "license": "ISC"
 }

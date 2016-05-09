@@ -1,9 +1,16 @@
+"use strict"
+
 const http         = require('http'),
       fs           = require('fs'),
       path         = require('path'),
       contentTypes = require('./utils/content-types'),
       sysInfo      = require('./utils/sys-info'),
+      app          = express();
       env          = process.env;
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+console.log('Adding app.js');
 
 let server = http.createServer(function (req, res) {
   let url = req.url;
