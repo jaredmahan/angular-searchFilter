@@ -5,9 +5,10 @@ const http         = require('http'),
       path         = require('path'),
       contentTypes = require('./utils/content-types'),
       sysInfo      = require('./utils/sys-info'),
-      app          = express();
+      express      = require('express'),
       env          = process.env;
 
+var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 console.log('Adding app.js');
