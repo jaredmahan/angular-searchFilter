@@ -23,9 +23,8 @@ currently used in the application:
 | Component             | Application                    |
 | --------------------- | ------------------------------ |
 | express               | serving up pages               |
-| jade                  | node.js template engine        |
+| handlebars            | node.js template engine        |
 | bootstrap             | responsive css freamework      |
-| bundle-up3            | bundling and minification      |
 | gulp                  | task management                |
 | gulp-main-bower-files | building out bower_components  |
 | sass                  | writing complex css            |
