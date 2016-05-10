@@ -26,7 +26,6 @@ currently used in the application:
 | handlebars            | node.js template engine        |
 | bootstrap             | responsive css freamework      |
 | gulp                  | task management                |
-| gulp-main-bower-files | building out bower_components  |
 | sass                  | writing complex css            |
 | gulp-sass             | compiles sass to css           |
 
