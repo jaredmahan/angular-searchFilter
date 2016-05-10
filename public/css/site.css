@@ -1,6 +1,7 @@
 body {
   margin-top: 60px;
-  font-family: 'Open Sans', sans-serif !important; }
+  font-family: 'Open Sans', sans-serif !important;
+  margin-bottom: 50px; }
 
 footer {
   background-color: #000;
@@ -15,7 +16,7 @@ footer {
   text-align: right; }
 
 .fork-me {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 1031; }
