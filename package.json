@@ -14,5 +14,9 @@
     "start": "node --use_strict start.js"
   },
   "author": "Jared Mahan <jaredmahan@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.1"
+  }
 }
