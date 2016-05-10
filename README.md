@@ -28,8 +28,8 @@ currently used in the application:
 | bundle-up3            | bundling and minification      |
 | gulp                  | task management                |
 | gulp-main-bower-files | building out bower_components  |
-| less                  | writing complex css            |
-| gulp-less             | compiles less to css           |
+| sass                  | writing complex css            |
+| gulp-sass             | compiles sass to css           |
 
   
 
