@@ -5,10 +5,8 @@
   "private": true,
   "main": "start.js",
   "dependencies": {
-    "bundle-up3": "^1.1.1",
     "express": "^4.13.1",
-    "express-handlebars": "^3.0.0",
-    "moment": "^2.13.0"
+    "express-handlebars": "^3.0.0"
   },
   "scripts": {
     "start": "node --use_strict start.js"
@@ -17,6 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-sass": "^2.3.1"
+    "gulp-sass": "^2.3.1",
+    "nunjucks": "^2.4.2"
   }
 }

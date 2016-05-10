@@ -16,12 +16,7 @@
             $q.all(initialPromises).then(function (response) {
                 vm.loading = false;
                 vm.employees = response[0].value;
-            });
-            vm.welcome = "Welcome to our site. This site uses node.js and angular.js. "
-              + "It uses express with jade as the template engine. "
-              + "Finally, we top it off by using gulp for tasks such as building javascript, "
-              + "less, and css and bundle everything together using bundle-up3.";
-            
+            }); 
         };
         vm.filterTable = function(filters){
             vm.pagingLoading = true;

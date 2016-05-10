@@ -1,5 +1,6 @@
 body{
     margin-top: 60px;
+    font-family: 'Open Sans', sans-serif !important;
 }
 footer {
     background-color: #000;
@@ -31,31 +32,13 @@ footer {
     }
 }
 
-// Add tag functionality
-.tag-container{
-    margin: 5px 0;
+.header{
+    &-1{
+        font-size:25pt;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
 }
-.tag {
-  font-size: 12px;
-  padding: .3em .4em .4em;
-  margin: 0 .1em;
-}
-.tag a {
-  color: #bbb;
-  cursor: pointer;
-  opacity: 0.6;
-}
-.tag a:hover {
-  opacity: 1.0
-}
-.tag .remove {
-  vertical-align: bottom;
-  top: 0;
-}
-.tag a {
-  margin: 0 0 0 .3em;
-}
-.tag a i {
-  color: #fff;
-  margin-bottom: 3px;
+.tableContainer{
+    margin-bottom: 20px;
 }
