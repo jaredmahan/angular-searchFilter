@@ -1,0 +1,139 @@
+<div ng-controller="Home as vm">
+    <div class="alert alert-warning text-center">
+       <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <strong>Still working on getting this project site up and running.</strong>
+    </div>
+    <div class="container-fluid well">
+        <div class="header-1">Introduction</div>
+        The <strong>Angular Search Filter</strong> module is a easy robust way to manage filtering in your angular application.
+        This module utilizes the angular workflow allowing you to add filters in your html. While filtering the module spits
+        out a filter object includes a builtin ODATA query generated from your filters.<br /><br />
+
+        <strong>Things this module provides to you:</strong>
+
+        <ul>
+            <li>Works well with Bootstrap</li>
+            <li>Designed for use with angular</li>
+            <li>Builtin OData filtering</li>
+            <li>Intuitive filters based on type</li>
+            <li>Type Templating</li>
+            <li>Filter API that allows the developer to manage filters as they please</li>
+        </ul>
+    </div>
+
+    <div id="htmlSnippet1" class="tableContainer">
+        <div class="well well-sm form-inline" style="margin-bottom: 0; border-radius: 4px 4px 0 0;">
+            <div class="text-left inline">
+                <angular-search-filter on-change="vm.filterTable" enable-predefined-filtering="false">
+                    <predefined-filter name="All" value="value"></predefined-filter>
+                    <predefined-filter name="Completed" value="value"></predefined-filter>
+                    <predefined-filter name="Active" value="value"></predefined-filter>
+                    <property-filter name="First Name" property="FirstName" type="string"></property-filter>
+                    <property-filter name="Last Name" property="LastName" type="string"></property-filter>
+                    <property-filter name="Title" property="Title" type="string"></property-filter>
+                    <property-filter name="City" property="City" type="string"></property-filter>
+                    <property-filter name="Region" property="Region" type="string"></property-filter>
+                    <property-filter name="Hire Date" property="HireDate" type="date"></property-filter>
+                </angular-search-filter>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed table-hover table-select" style="border: 1px solid #ccc; border-top: 0;">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Title</th>
+                        <th>City</th>
+                        <th>Region</th>
+                        <th>Hire Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-show="vm.loading">
+                        <td colspan="6" style="text-align:center;padding: 25px 0;"><i class="fa fa-spin fa-spinner fa-pulse fa-2x"></i></td>
+                    </tr>
+                    <tr ng-show="vm.employees.length < 1">
+                        <td colspan="6"><i>There were no records found.</i></td>
+                    </tr>
+                    <tr ng-repeat="emp in vm.employees" data-id="{{emp.EmployeeID}}">
+                        <td>{{emp.FirstName}}</td>
+                        <td>{{emp.LastName}}</td>
+                        <td>{{emp.Title}}</td>
+                        <td>{{emp.City}}</td>
+                        <td>{{emp.Region}}</td>
+                        <td>{{emp.HireDate | date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#markup1" aria-controls="markup1" role="tab" data-toggle="tab">Markup</a></li>
+        <li role="presentation"><a href="#javascript1" aria-controls="javascript1" role="tab" data-toggle="tab">Javascript</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane panel-body active" id="markup1">
+<!-- Begin Html Snippet --->
+<div raw-html>
+<!-- Each property-filter represents a filter with its type and odata representation -->
+<div class="well well-sm form-inline" style="margin-bottom: 0; border-radius: 4px 4px 0 0;">
+    <div class="text-left inline">
+        <angular-search-filter on-change="vm.filterTable" enable-predefined-filtering="false">
+            <property-filter name="First Name" property="FirstName" type="string"></property-filter>
+            <property-filter name="Last Name" property="LastName" type="string"></property-filter>
+            <property-filter name="Title" property="Title" type="string"></property-filter>
+            <property-filter name="City" property="City" type="string"></property-filter>
+            <property-filter name="Region" property="Region" type="string"></property-filter>
+            <property-filter name="Hire Date" property="HireDate" type="date"></property-filter>
+        </angular-search-filter>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-condensed table-hover table-select" style="border: 1px solid #ccc; border-top: 0;">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Title</th>
+                <th>City</th>
+                <th>Region</th>
+                <th>Hire Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-show="vm.loading">
+                <td colspan="6" style="text-align:center;padding: 25px 0;"><i class="fa fa-spin fa-spinner fa-pulse fa-2x"></i></td>
+            </tr>
+            <tr ng-show="vm.employees.length < 1">
+                <td colspan="6"><i>There were no records found.</i></td>
+            </tr>
+            <tr ng-repeat="emp in vm.employees" data-id="{{emp.EmployeeID}}">
+                <td>{{emp.FirstName}}</td>
+                <td>{{emp.LastName}}</td>
+                <td>{{emp.Title}}</td>
+                <td>{{emp.City}}</td>
+                <td>{{emp.Region}}</td>
+                <td>{{emp.HireDate | date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane panel-body" id="javascript1">
+            test1
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+<div ng-show="isDebug">
+    <pre>{{vm | json}}</pre>
+</div>
+</div>

@@ -1,0 +1,21 @@
+{
+  "name": "openshift-cartridge-nodejs-template",
+  "version": "1.0.1",
+  "description": "Angular Search Filter ",
+  "private": true,
+  "main": "start.js",
+  "dependencies": {
+    "express": "^4.13.1",
+    "express-handlebars": "^3.0.0"
+  },
+  "scripts": {
+    "start": "node --use_strict start.js"
+  },
+  "author": "Jared Mahan <jaredmahan@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.1",
+    "nunjucks": "^2.4.2"
+  }
+}
