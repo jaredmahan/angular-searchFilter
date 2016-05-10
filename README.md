@@ -1,7 +1,9 @@
 # angular-SearchFilter
 An external table filtering control. This directive will access the table's column data
 and create a flexible UI that will allow users to filter table data.
-
+## DEMO
+Click on the link to see the code in action!
+ http://angularsearchfilter-jaredmahan.rhcloud.com/
 ## Getting Started
 `To be continued...`
 ## Cloning the Project
