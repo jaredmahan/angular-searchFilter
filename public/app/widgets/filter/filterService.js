@@ -27,8 +27,8 @@
 
                 return true;
             },
-            generateODataPattern: function(selected){
-                 // Add odata pattern if it exists
+            generateODataPattern: function (selected) {
+                // Add odata pattern if it exists
                 var odataPattern = service.odataPatternLookup(selected.operator);
 
                 if (odataPattern !== null && odataPattern !== undefined) {
@@ -50,11 +50,12 @@
                 }
                 return selected;
             },
-            odataPatternLookup: function(operator){
+            odataPatternLookup: function (operator) {
                 var dict = {}
                 dict['equal'] = '{0} eq {1}';
                 dict['equals'] = '{0} eq {1}';
                 dict['not equal'] = '{0} ne {1}';
+                dict['not equals'] = '{0} ne {1}';
                 dict['greater than'] = '{0} gt {1}';
                 dict['greater than or equal'] = '{0} ge {1}';
                 dict['less than'] = '{0} lt {1}';
@@ -64,7 +65,7 @@
                 dict['starts with'] = 'startswith({0}, {1})';
                 dict['before'] = '{0} lt {1}';
                 dict['after'] = '{0} gt {1}';
-                
+
                 return dict[operator];
 
             }
@@ -72,4 +73,4 @@
 
         return service;
     };
-}());
+} ());

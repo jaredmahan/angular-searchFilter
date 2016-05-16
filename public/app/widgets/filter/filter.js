@@ -16,6 +16,8 @@
             string: ['equals', 'contains', 'starts with', 'ends with'],
             int32: ['equals', 'greater than', 'greater than or equal', 'less than', 'less than or equal'],
             number: ['equals', 'greater than', 'greater than or equal', 'less than', 'less than or equal'],
+            bool: ['equals', 'not equals'],
+            boolean: ['equals', 'not equals']
         };
         vm.init = function () {
             // if predefined filtering is not enabled only show property filtering
@@ -33,12 +35,12 @@
             vm.filters = [];
             vm.selectedPredefined = null;
             vm.selectedProperty = null;
-            vm.selectedOperator = null;        
+            vm.selectedOperator = null;
 
             // Watch the property and predefined filters for changes. If there is a change fire the on change en
             $scope.$watch('[vm.propertyFilters,vm.predefinedFilters]', function (prop, pre) {
                 if (filterService.arraysEqual(prop[0], prop[1]) && filterService.arraysEqual(pre[0], pre[1])) return;
-                
+
                 // Generate an odata query from the property filters
                 // TODO: Append the predefined filters to the property filters
                 var filterString = null;
@@ -52,7 +54,7 @@
                 vm.onChange({ odataQuery: filterString, property: prop[0], predefinedFilter: pre[0] });
             }, true);
         };
-        
+
         vm.getOperators = function () {
             if (vm.selectedProperty === null) return;
             var result = vm.operators[vm.selectedProperty.type];
@@ -166,7 +168,7 @@
             }
         }
     };
-}());
+} ());
 
 
 // String manipulation added here
@@ -176,9 +178,9 @@ if (!String.prototype.format) {
         var args = arguments;
         return this.replace(/{(\d+)}/g, function (match, number) {
             return typeof args[number] != 'undefined'
-              ? args[number]
-              : match
-            ;
+                ? args[number]
+                : match
+                ;
         });
     };
 }

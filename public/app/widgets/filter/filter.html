@@ -20,6 +20,7 @@
         </select>
         <input ng-if="vm.selectedProperty.type === 'string' || vm.selectedProperty.type === undefined" class="form-control" style="width: 200px" ng-disabled="vm.selectedProperty === null" type="text" placeholder="Value" ng-model="vm.selectedProperty.value" />
         <input ng-if="vm.selectedProperty.type === 'int32' || vm.selectedProperty.type === 'number'" class="form-control" style="width: 200px" ng-disabled="vm.selectedProperty === null" type="number" placeholder="Value" ng-model="vm.selectedProperty.value" />
+        <select ng-if="vm.selectedProperty.type === 'bool' || vm.selectedProperty.type === 'boolean'" ng-disabled="vm.selectedProperty === null" style="width: 200px" ng-init="vm.selectedProperty.value = vm.selectedProperty.value || 'true'"  ng-model="vm.selectedProperty.value" class="form-control" ><option>true</option><option>false</option></select>
         <date-time-picker ng-if="vm.selectedProperty.type === 'date' || vm.selectedProperty.type === 'datetime'" ng-disabled="vm.selectedProperty === null" style="width: 200px" ng-model="vm.selectedProperty.value" datetime-format="MM/DD/YYYY h:mm A"></date-time-picker>
         <span class="input-group-btn">
             <button ng-click="vm.addPropertyFilter()" ng-disabled="vm.selectedProperty === null || vm.selectedProperty.operator === undefined || vm.selectedProperty.operator === null" class="btn btn-default" type="button">
