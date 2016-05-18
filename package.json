@@ -13,6 +13,9 @@
     "test": "node test/my-tests.js",
     "lint": "standard ./public/app/**/*.js" 
   },
+  "standard":{
+    "globals": ["angular", "$", "JQuery", "moment", "Prism"]
+  },
   "author": "Jared Mahan <jaredmahan@gmail.com>",
   "license": "ISC",
   "devDependencies": {

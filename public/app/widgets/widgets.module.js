@@ -1,7 +1,7 @@
 (function () {
-    "use strict"
+  'use strict'
 
-    angular.module("app.widgets", [
-        'app.widgets.filter'
-    ]);
-}());
+  angular.module('app.widgets', [
+    'app.widgets.filter'
+  ])
+}())

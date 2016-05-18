@@ -1,5 +1,5 @@
 ﻿(function () {
-    "use strict"
+  'use strict'
 
-    var core = angular.module("app.core", []);
-}());
+  angular.module('app.core', [])
+}())
