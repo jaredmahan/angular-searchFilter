@@ -9,13 +9,16 @@
     "express-handlebars": "^3.0.0"
   },
   "scripts": {
-    "start": "node --use_strict start.js"
+    "start": "node --use_strict start.js",
+    "test": "node test/my-tests.js",
+    "lint": "standard ./public/app/**/*.js" 
   },
   "author": "Jared Mahan <jaredmahan@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.1",
-    "nunjucks": "^2.4.2"
+    "nunjucks": "^2.4.2",
+    "standard": "^7.1.0"
   }
 }
