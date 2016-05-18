@@ -1,4 +1,6 @@
 # angular-SearchFilter
+[![Build Status](https://travis-ci.org/jaredmahan/angular-searchFilter.svg?branch=master)](https://travis-ci.org/jaredmahan/angular-searchFilter)
+
 An external table filtering control. This directive will access the table's column data
 and create a flexible UI that will allow users to filter table data.
 ## DEMO
