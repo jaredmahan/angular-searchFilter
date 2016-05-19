@@ -10,9 +10,8 @@
   },
   "scripts": {
     "start": "node --use_strict start.js",
-    "test": "node spec/filter-spec.js",
-    "lint": "standard ./public/app/**/*.js",
-    "karma": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "lint": "standard ./public/app/**/*.js"
   },
   "standard": {
     "globals": [
