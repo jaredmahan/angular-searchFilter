@@ -10,18 +10,37 @@
   },
   "scripts": {
     "start": "node --use_strict start.js",
-    "test": "node test/my-tests.js",
-    "lint": "standard ./public/app/**/*.js" 
+    "test": "node spec/filter-spec.js",
+    "lint": "standard ./public/app/**/*.js",
+    "karma": "karma start karma.conf.js"
   },
-  "standard":{
-    "globals": ["angular", "$", "JQuery", "moment", "Prism"]
+  "standard": {
+    "globals": [
+      "angular",
+      "$",
+      "JQuery",
+      "moment",
+      "Prism"
+    ]
   },
   "author": "Jared Mahan <jaredmahan@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "angular": "^1.5.5",
+    "angular-mocks": "^1.5.5",
+    "express-simple-cdn": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-requirejs": "^1.0.0",
     "nunjucks": "^2.4.2",
+    "phantomjs-prebuilt": "^2.1.7",
+    "requirejs": "^2.2.0",
     "standard": "^7.1.0"
   }
 }
