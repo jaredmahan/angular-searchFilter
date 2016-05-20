@@ -1,5 +1,9 @@
-describe("A suite", function() {
-  it("contains spec with an expectation", function() {
-    expect(true).toBe(true);
+var test = angular;
+function helloWorld(){
+	return "Hello world!"
+}
+describe("Hello world", function() {
+  it("says hello", function() {
+    expect(helloWorld()).toEqual("Hello world!");
   });
 });

@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Thu May 19 2016 14:32:43 GMT-0500 (Central Daylight Time)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -10,19 +10,20 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'test-main.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js',
       'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js',
       'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-sanitize.min.js',
       'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.min.js',
-      'node_modules/angular-mocks/angular-mocks.js',
+      
 
-      'public/app/app.module.js',
-      'public/app/app.route.js',
+
+       'public/app/app.module.js',
+       'public/app/app.route.js',
       'public/app/core/core.module.js',
       'public/app/core/config.js',
       'public/app/core/common.js',
@@ -33,7 +34,11 @@ module.exports = function(config) {
       'public/app/widgets/widgets.module.js',
       'public/app/widgets/datetimepicker.js',
       'public/app/widgets/rawHtml.js',
-      { pattern: 'spec/**/*.js' }
+      
+      'spec/**/*.js',
+      //{ pattern: 'spec/**/*.js', included: true }
+      //{ pattern: 'public/app/**/*.js', included: false},
+      //{ pattern: 'node_modules/angular/*.js', included: false}
     ],
 
 
@@ -73,12 +78,12 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome','PhantomJS'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+    singleRun: false,
 
     // Concurrency level
     // how many browser should be started simultaneous
