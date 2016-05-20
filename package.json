@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "node --use_strict start.js",
-    "test": "karma start karma.conf.js",
+    "test": "karma start karma.conf.js --single-run",
     "lint": "standard ./public/app/**/*.js"
   },
   "standard": {
